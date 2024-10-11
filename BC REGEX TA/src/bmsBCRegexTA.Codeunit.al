@@ -1,9 +1,9 @@
-// Welcome to your new AL extension.
 
 codeunit 90002 "bmsBC Regex TA"
 {
     Subtype = Test;
     TestPermissions = Disabled;
+    //[FEATURE] Using regex for field validation in BUsiness Central
 
     var
         LibraryTestInitialise: Codeunit "Library - Test Initialize";
@@ -29,6 +29,7 @@ codeunit 90002 "bmsBC Regex TA"
         LibraryTestInitialise.OnAfterTestSuiteInitialize(90002);
     end;
 
+    //[Scenario] 001 Checkk the sorting key in the Regex rules page
     [Test]
     procedure Scenario001_RegexRulesPageSorting()
     var
@@ -47,6 +48,7 @@ codeunit 90002 "bmsBC Regex TA"
         LibraryAssert.AreEqual('Table No.,Field No.', FieldRegexRules.CurrentKey, 'The sort key is not corret');
     end;
 
+    //[Scenario] 002 Check that the Action type and zregex expression lookup function are not available as long as all the table and field information are not filled.
     [Test]
     [HandlerFunctions('FieldRegexExpressionModalHandler')]
     procedure Scenario002_RegexRulesPageBusinessSetup()
@@ -86,6 +88,7 @@ codeunit 90002 "bmsBC Regex TA"
         LibraryAssert.IsTrue(drilldownDone, 'The drilldown should be possible');
     end;
 
+    //[Scenario] 003 Test match regex function
     [Test]
     procedure Scenario003_TestMatchRegex()
     var
@@ -108,6 +111,7 @@ codeunit 90002 "bmsBC Regex TA"
         CustomerCardTestPage.Close();
     end;
 
+    //[Scenario] 004 Test match regex function
     [Test]
     procedure Scenario004_TestMatchRegex()
     var
@@ -130,6 +134,7 @@ codeunit 90002 "bmsBC Regex TA"
         VendorCardTestPage.Close();
     end;
 
+    //[Scenario] 005 Tets replace regex function
     [Test]
     procedure Scenario005_TestReplaceRegex()
     var

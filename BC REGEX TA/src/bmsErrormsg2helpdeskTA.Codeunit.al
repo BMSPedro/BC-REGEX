@@ -2,6 +2,7 @@ codeunit 90003 "bmsError msg 2 helpdesk TA"
 {
     Subtype = Test;
     TestPermissions = Disabled;
+    //[FEATURE] Send email to the helpdesk plateform
 
     var
         LibraryTestInitialise: Codeunit "Library - Test Initialize";
@@ -27,11 +28,11 @@ codeunit 90003 "bmsError msg 2 helpdesk TA"
         LibraryTestInitialise.OnAfterTestSuiteInitialize(90003);
     end;
 
+    //[Scenario] 001 Setting email adresse on the company information entity
     [Test]
     procedure Scenario001_SetEmailtoCallHelpDesk()
     var
         CompanyInformation: Record "Company Information";
-
     begin
         //Setting up Lazy and fresh elements
         //[GIVEN] Set Helpdesk Email on company information entity
@@ -44,6 +45,7 @@ codeunit 90003 "bmsError msg 2 helpdesk TA"
         LibraryAssert.AreNotEqual(' ', CompanyInformation."bmsSupport Email Address", 'The Helpdesk email must be filled');
     end;
 
+    //[Scenario] 002 Open email editor and save email when error in general journal
     [Test]
     [HandlerFunctions('ManageTemplatePage,ManagePostConfirmDialog,ManageErrorMsg,EmailHandler,ManageStrMenuDrafEmail')]
     procedure Scenario002_SetEmailtoCallHelpDesk()
