@@ -1,4 +1,4 @@
-enum 80200 "Regex Action Type"
+enum 80200 "bmsRegex Action Type"
 {
     Extensible = true;
 

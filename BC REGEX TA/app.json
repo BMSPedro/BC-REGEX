@@ -1,0 +1,51 @@
+{
+  "id": "8b999d76-e5b5-4fe4-9f2a-88f3ef7ae224",
+  "name": "BC REGEX TA",
+  "publisher": "Axians BMS",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {
+      "id": "11ca703c-dcea-4c0b-8127-a6db5e75095b",
+      "name": "BC REGEX",
+      "publisher": "Axians BMS",
+      "version": "1.0.0.0"
+    },
+    {
+      "id": "5d86850b-0d76-4eca-bd7b-951ad998e997",
+      "name": "Tests-TestLibraries",
+      "publisher": "Microsoft",
+      "version": "24.5.23489.24399"
+    },
+    {
+      "id": "64c9d5e2-7744-4866-bc0e-5ebc2898e651",
+      "name": "Error Messages with Recommendations",
+      "publisher": "Microsoft",
+      "version": "24.5.23489.24399"
+    }
+  ],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "24.0.0.0",
+  "idRanges": [
+    {
+      "from": 90000,
+      "to": 99999
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "13.0",
+  "features": [
+    "NoImplicitWith"
+  ]
+}

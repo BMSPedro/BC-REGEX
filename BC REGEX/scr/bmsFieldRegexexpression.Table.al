@@ -1,4 +1,4 @@
-table 80200 "Field Regex expression"
+table 80200 "bmsField Regex expression"
 {
     DataClassification = ToBeClassified;
 
@@ -12,11 +12,11 @@ table 80200 "Field Regex expression"
         {
             DataClassification = ToBeClassified;
         }
-        field(3; "Priority"; Integer)
+        field(3; Priority; Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(4; "Regex"; Text[100])
+        field(4; Regex; Text[1024])
         {
             DataClassification = ToBeClassified;
         }

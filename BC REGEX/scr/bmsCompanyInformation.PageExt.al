@@ -1,10 +1,10 @@
-pageextension 80201 "Company Information" extends "Company Information"
+pageextension 80201 "bmsCompany Information" extends "Company Information"
 {
     layout
     {
         addafter("E-Mail")
         {
-            field("Support Email Adress"; Rec."Support Email Address")
+            field("bmsSupport Email Adress"; Rec."bmsSupport Email Address")
             {
                 ApplicationArea = all;
                 ToolTip = 'Support Email Adress';

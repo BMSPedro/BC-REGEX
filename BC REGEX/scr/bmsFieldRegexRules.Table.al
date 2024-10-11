@@ -1,6 +1,6 @@
 
 
-table 80201 "Field Regex Rules"
+table 80201 "bmsField Regex Rules"
 {
     Caption = 'Field Regex Rules';
     ReplicateData = false;
@@ -23,13 +23,13 @@ table 80201 "Field Regex Rules"
             Caption = 'Field Caption';
         }
 
-        field(4; "Regex Action Type"; Enum "Regex Action Type")
+        field(4; "Regex Action Type"; Enum "bmsRegex Action Type")
         {
 
         }
         field(5; "Regex Field Expression"; Integer)
         {
-            CalcFormula = count("Field Regex expression" where("Table No" = field("Table No."), "Field No" = field("Field No.")));
+            CalcFormula = count("bmsField Regex expression" where("Table No" = field("Table No."), "Field No" = field("Field No.")));
             FieldClass = FlowField;
         }
         field(6; "Table Caption"; Text[250])
@@ -45,4 +45,13 @@ table 80201 "Field Regex Rules"
             Clustered = true;
         }
     }
+    trigger OnDelete()
+    var
+        FieldRegexExpression: Record "bmsField Regex expression";
+    begin
+        FieldRegexExpression.reset();
+        FieldRegexExpression.SetRange("Table No", rec."Table No.");
+        FieldRegexExpression.SetRange("Field No", rec."Field No.");
+        FieldRegexExpression.DeleteAll();
+    end;
 }

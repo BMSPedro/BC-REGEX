@@ -1,18 +1,16 @@
-pageextension 80200 "Error Message" extends "Error Messages"
+pageextension 80200 "bmsError Message" extends "Error Messages"
 {
     actions
     {
         addafter(OpenRelatedRecord_Promoted)
         {
-            actionref(AskforAssistcne; Askforsupport)
+            actionref(AskforAssistcne; bmsAskforsupport)
             {
             }
         }
-
-
         addafter(OpenRelatedRecord)
         {
-            action(Askforsupport)
+            action(bmsAskforsupport)
             {
                 ApplicationArea = Basic, Suite;
                 Caption = 'Send the support request';
@@ -22,14 +20,12 @@ pageextension 80200 "Error Message" extends "Error Messages"
                 var
                     TempEmailItem: Record "Email Item" temporary;
                     user: Record User;
-                    companyinfo: Record "Company Information";
                     mailmngt: Codeunit "Mail Management";
                     EmailScenario: Enum "Email Scenario";
                     textBuilder: TextBuilder;
                 begin
+                    companyinfo.TestField("bmsSupport Email Address");
                     if Confirm('Are you sur that you want to contact the support service for assistance ?') then begin
-
-                        companyinfo.get();
 
                         textBuilder.AppendLine('Hello');
                         textBuilder.AppendLine();
@@ -42,7 +38,7 @@ pageextension 80200 "Error Message" extends "Error Messages"
                         textBuilder.AppendLine('<br>Table Number: ' + format(rec."Context Table Number"));
                         textBuilder.AppendLine('<br>Record ID: ' + format(rec."Context Record ID"));
                         textBuilder.AppendLine('<br>Field Name: ' + rec."Context Field Name");
-                        textBuilder.AppendLine('<br> Message: ' + rec.Description);
+                        textBuilder.AppendLine('<br> Message: ' + rec.Message);
                         textBuilder.AppendLine('<br>Support Url: ' + rec."Support Url");
                         textBuilder.AppendLine('<br>Error Datetime: ' + format(rec."Created On"));
                         textBuilder.AppendLine();
@@ -55,7 +51,7 @@ pageextension 80200 "Error Message" extends "Error Messages"
                         TempEmailItem.Validate("Send CC", user."Authentication Email");
                         TempEmailItem.Validate(Subject, 'Error: ' + format(rec."Context Record ID"));
                         TempEmailItem."Message Type" := TempEmailItem."Message Type"::"From Email Body Template";
-                        TempEmailItem.Validate("Send to", companyinfo."Support Email Address");
+                        TempEmailItem.Validate("Send to", companyinfo."bmsSupport Email Address");
                         //TempEmailItem.Body.CreateOutStream(outstr);
                         //outstr.WriteText(textBuilder.ToText());
                         TempEmailItem.SetBodyText(textBuilder.ToText());
@@ -69,4 +65,12 @@ pageextension 80200 "Error Message" extends "Error Messages"
             }
         }
     }
+
+    var
+        companyinfo: Record "Company Information";
+
+    trigger OnOpenPage()
+    begin
+        companyinfo.get();
+    end;
 }

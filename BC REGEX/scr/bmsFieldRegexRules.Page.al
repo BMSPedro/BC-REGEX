@@ -1,11 +1,11 @@
 
 
-page 80202 "Field Regex Rules"
+page 80202 "bmsField Regex Rules"
 {
     PageType = Worksheet;
     ApplicationArea = Basic, Suite;
     UsageCategory = Administration;
-    SourceTable = "Field Regex Rules";
+    SourceTable = "bmsField Regex Rules";
     RefreshOnActivate = true;
     Caption = 'Field Regex Rules';
 
@@ -65,21 +65,23 @@ page 80202 "Field Regex Rules"
                 {
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Regex Action Type';
+                    Enabled = rec."Field No." <> 0;
                 }
                 field("Regex Field Expression"; Rec."Regex Field Expression")
                 {
                     ApplicationArea = Basic, Suite;
                     ToolTip = 'Regex Field Expression';
-
+                    Editable = rec."Field No." <> 0;
                     trigger OnDrillDown()
                     var
-                        FieldRegexExpression: Record "Field Regex expression";
+                        FieldRegexExpression: Record "bmsField Regex expression";
                     begin
-                        FieldRegexExpression.Reset();
-                        FieldRegexExpression.SetRange("Table No", rec."Table No.");
-                        FieldRegexExpression.SetRange("Field No", rec."Field No.");
-                        Page.RunModal(Page::"Field Regex Expression", FieldRegexExpression);
-
+                        if (rec."Field No." <> 0) and (rec."Regex Action Type" <> rec."Regex Action Type"::" ") then begin
+                            FieldRegexExpression.Reset();
+                            FieldRegexExpression.SetRange("Table No", rec."Table No.");
+                            FieldRegexExpression.SetRange("Field No", rec."Field No.");
+                            Page.RunModal(Page::"bmsField Regex Expression", FieldRegexExpression);
+                        end;
                     end;
                 }
             }

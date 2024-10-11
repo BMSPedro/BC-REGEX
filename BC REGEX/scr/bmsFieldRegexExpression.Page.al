@@ -1,8 +1,7 @@
-page 80201 "Field Regex Expression"
+page 80201 "bmsField Regex Expression"
 {
     PageType = List;
-    SourceTable = "Field Regex expression";
-
+    SourceTable = "bmsField Regex expression";
 
     layout
     {
@@ -11,15 +10,15 @@ page 80201 "Field Regex Expression"
         {
             repeater(Group)
             {
-                field("Priority"; rec.Priority)
+                field(Priority; rec.Priority)
                 {
                     ApplicationArea = All;
                     ToolTip = 'Priority';
                 }
-                field("Description"; rec."Regex description")
+                field(Description; rec."Regex description")
                 {
                     ApplicationArea = All;
-                    ToolTip = 'Priority';
+                    ToolTip = 'Regex Description';
                 }
                 field("Regex Expression"; rec.Regex)
                 {
