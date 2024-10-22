@@ -16,10 +16,10 @@ codeunit 90002 "bmsBC Regex TA"
 
     local procedure Initialize()
     begin
-        //Generic Fresh Data-setup 
+        //Generic Shared Data-setup 
         LibraryTestInitialise.OnTestInitialize(90002);
 
-        //Lazy Data-Setup
+        //Lazy Fresh Data-Setup
         if not isInitialized then
             LibraryTestInitialise.OnBeforeTestSuiteInitialize(90002);
 
@@ -56,6 +56,7 @@ codeunit 90002 "bmsBC Regex TA"
         FieldRegexRules: Record "bmsField Regex Rules";
         FieldRegexRulesTestPage: TestPage "bmsField Regex Rules";
     begin
+        Initialize();
         //[GIVEN] Regex UI
 
         //[WHEN] Set an specific Regex rules (by partially filling in all fields, and then completely)
